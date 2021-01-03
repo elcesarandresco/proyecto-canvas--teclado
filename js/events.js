@@ -1,5 +1,77 @@
+// declarar variables de coordinadas
+var x = 0;
+var y = 0;
+//recordar variables,                                             
+var estado;
+
+// Declarar variables con elementos de HTML
+var lienzo = document.getElementById("myCanvas");
+
+// Declarar Event Listeners
+/* lienzo.addEventListener("mousemove", moveMouse); */
+lienzo.addEventListener("mousedown", pressMouse);
+lienzo.addEventListener("mouseup", upMouse);
+lienzo.addEventListener("mousemove", moveMouse);
 
 
+/* crear contexto  de canvas */
+var context = lienzo.getContext("2d");
+var espacio = lienzo.width;
+
+/* declarar función que permita dibujar en canvas */
+function drawInCanvas(color, xinicial, yinicial, xfinal, yfinal,) {
+    context.beginPath();
+    context.strokeStyle = color;
+    context.moveTo(xinicial, yinicial);
+    context.lineTo(xfinal, yfinal);
+    context.stroke();
+    context.closePath();
+}
+
+
+
+
+// funciones de los eventos
+function pressMouse(evento) {
+    
+    x = evento.layerX;
+    y = evento.layerY;
+    estado = 1;
+    console.log("El estado del mouse es presionado " + estado);
+    // console.log("El estado del mouse es presionado " + estado);
+} 
+
+function upMouse (evento) {
+
+    x = evento.layerX;
+    y = evento.layerY;
+    estado = 0;
+    console.log("El estado del mouse es no presionado " + estado);
+
+
+}
+
+function moveMouse (evento) {
+
+
+
+    if (estado == 1) {
+
+        drawInCanvas("red", x, y, evento.layerX, evento.layerY);
+
+    }
+
+}
+
+
+
+// comenzar a dibujar a través del canvas
+
+/*function moveMouse(evento) {
+
+    console.log(evento);
+
+} */
 
 
 
@@ -102,4 +174,4 @@ function drawDown (evento) {
     }
 
 
-}
+} */
